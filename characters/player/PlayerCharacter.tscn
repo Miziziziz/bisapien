@@ -1,0 +1,246 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://characters/player/LaserSight.gd" type="Script" id=1]
+[ext_resource path="res://sprites/cop.png" type="Texture" id=2]
+[ext_resource path="res://sprites/pistol_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://sprites/rocket_launcher_spritesheet.png" type="Texture" id=4]
+[ext_resource path="res://sprites/machine_gun_spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://sprites/shotgun_spritesheet.png" type="Texture" id=6]
+[ext_resource path="res://characters/player/UpperBody.gd" type="Script" id=7]
+[ext_resource path="res://characters/player/PlayerCharacter.gd" type="Script" id=8]
+[ext_resource path="res://characters/player/WeaponManager.gd" type="Script" id=9]
+[ext_resource path="res://weapons/Weapon.gd" type="Script" id=10]
+[ext_resource path="res://weapons/FirePointsSpread.gd" type="Script" id=11]
+[ext_resource path="res://characters/player/PickupDetector.gd" type="Script" id=12]
+[ext_resource path="res://characters/player/WeaponPickupPopup.gd" type="Script" id=13]
+[ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=14]
+[ext_resource path="res://characters/HealthBar.tscn" type="PackedScene" id=15]
+[ext_resource path="res://characters/HitBox.tscn" type="PackedScene" id=16]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 12.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 139 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UpperBody:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, -7 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "run"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 115, 116, 117, 118, 119, 120, 121, 122, 123, 124 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UpperBody:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -8 ), Vector2( 1, -8 ), Vector2( 2, -8 ), Vector2( 1, -7 ), Vector2( 0, -8 ), Vector2( 0, -8 ), Vector2( 2, -8 ), Vector2( 1, -8 ), Vector2( 1, -7 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 15.0333
+
+[node name="PlayerCharacter" type="KinematicBody2D" groups=[
+"player",
+]]
+collision_layer = 66
+collision_mask = 3
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -9 )
+shape = SubResource( 1 )
+
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2( -1, 5 )
+
+[node name="Legs" type="Sprite" parent="Graphics"]
+position = Vector2( -1, -9 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0 )
+vframes = 11
+hframes = 13
+frame = 115
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics/Legs"]
+autoplay = "run"
+anims/idle = SubResource( 2 )
+anims/run = SubResource( 3 )
+
+[node name="UpperBody" type="Node2D" parent="Graphics/Legs"]
+position = Vector2( 0, -8 )
+script = ExtResource( 7 )
+
+[node name="Pistol" type="Sprite" parent="Graphics/Legs/UpperBody"]
+texture = ExtResource( 3 )
+vframes = 5
+hframes = 5
+
+[node name="MachineGun" type="Sprite" parent="Graphics/Legs/UpperBody"]
+visible = false
+position = Vector2( -1, 0 )
+texture = ExtResource( 5 )
+vframes = 5
+hframes = 5
+
+[node name="Shotgun" type="Sprite" parent="Graphics/Legs/UpperBody"]
+visible = false
+texture = ExtResource( 6 )
+vframes = 5
+hframes = 5
+
+[node name="RocketLauncher" type="Sprite" parent="Graphics/Legs/UpperBody"]
+visible = false
+texture = ExtResource( 4 )
+vframes = 5
+hframes = 5
+
+[node name="LaserSight" type="Node2D" parent="Graphics/Legs"]
+position = Vector2( 2, -12 )
+script = ExtResource( 1 )
+laser_color = Color( 0, 1, 0.858824, 0.572549 )
+
+[node name="WeaponManager" type="Node2D" parent="Graphics/Legs"]
+position = Vector2( 2, -12 )
+script = ExtResource( 9 )
+
+[node name="Pistol" type="Node2D" parent="Graphics/Legs/WeaponManager"]
+position = Vector2( 15, 0 )
+script = ExtResource( 10 )
+
+[node name="MachineGun" type="Node2D" parent="Graphics/Legs/WeaponManager"]
+position = Vector2( 15, 0 )
+script = ExtResource( 10 )
+ammo_type = 1
+automatic = true
+attack_rate = 0.1
+
+[node name="Shotgun" type="Node2D" parent="Graphics/Legs/WeaponManager"]
+position = Vector2( 15, 0 )
+script = ExtResource( 10 )
+ammo_type = 2
+attack_rate = 0.2
+
+[node name="FirePoints" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun"]
+script = ExtResource( 11 )
+arc = 40
+
+[node name="FirePoint" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun/FirePoints"]
+
+[node name="FirePoint2" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun/FirePoints"]
+
+[node name="FirePoint3" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun/FirePoints"]
+
+[node name="FirePoint4" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun/FirePoints"]
+
+[node name="FirePoint5" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun/FirePoints"]
+
+[node name="FirePoint6" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun/FirePoints"]
+
+[node name="RocketLauncher" type="Node2D" parent="Graphics/Legs/WeaponManager"]
+position = Vector2( 15, 0 )
+script = ExtResource( 10 )
+ammo_type = 3
+damage = 30
+attack_rate = 0.2
+
+[node name="HealthManager" parent="." instance=ExtResource( 14 )]
+
+[node name="HitBox" parent="." instance=ExtResource( 16 )]
+position = Vector2( 0, -16 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 4 )
+
+[node name="PickupDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
+shape = SubResource( 5 )
+
+[node name="PopupUI" type="Control" parent="."]
+margin_top = -32.0
+margin_right = 40.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponPickupPopup" type="Label" parent="PopupUI"]
+margin_left = -43.0
+margin_top = -37.0
+margin_right = 52.0
+margin_bottom = -23.0
+text = "Pickup weapon"
+script = ExtResource( 13 )
+
+[node name="WeaponName" type="Label" parent="PopupUI"]
+margin_left = -47.0
+margin_top = -18.0
+margin_right = 45.0
+margin_bottom = -4.0
+text = "Machine Gun"
+align = 1
+valign = 1
+
+[node name="AmmoCount" type="Label" parent="PopupUI"]
+margin_left = 20.0
+margin_top = -3.0
+margin_right = 60.0
+margin_bottom = 11.0
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" parent="PopupUI" instance=ExtResource( 15 )]
+[connection signal="health_changed" from="HealthManager" to="PopupUI/HealthBar" method="update_health"]
+[connection signal="health_changed" from="HealthManager" to="PickupDetector" method="update_player_health"]
+[connection signal="not_standing_over_weapon" from="PickupDetector" to="PopupUI/WeaponPickupPopup" method="hide"]
+[connection signal="picked_up_health" from="PickupDetector" to="HealthManager" method="heal"]
+[connection signal="standing_over_weapon" from="PickupDetector" to="PopupUI/WeaponPickupPopup" method="show_weapon"]

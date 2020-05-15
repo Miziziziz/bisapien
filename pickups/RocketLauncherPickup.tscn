@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://pickups/Pickup.gd" type="Script" id=1]
+[ext_resource path="res://sprites/rocket_launcher_spritesheet.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="RocketLaunchePickup" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 1 )
+pickup_type = 4
+amount = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( -8, 3 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 151, 154, 2, 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 147, 151, 28, 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 12, 0 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 169, 150, 6, 4 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( -13, 0 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 147, 150, 2, 4 )

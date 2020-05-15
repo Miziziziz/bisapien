@@ -1,0 +1,162 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://sprites/rocket_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://weapons/Rocket.gd" type="Script" id=2]
+[ext_resource path="res://sprites/exp1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/smoke.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.0518519, 0.592593, 1 )
+colors = PoolColorArray( 0.376471, 0.376471, 0.376471, 0, 1, 1, 1, 1, 0.537255, 0.478431, 0.537255, 1, 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.495454 ), 0.0, 1.82457, 0, 0, Vector2( 1, 0.477273 ), -1.36956, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 47.99
+initial_velocity_random = 0.55
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 2.0
+
+[sub_resource type="Animation" id=8]
+resource_name = "blowup"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 21.0
+
+[node name="Rocket" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource( 2 )
+
+[node name="SmokeParticles2D" type="Particles2D" parent="."]
+rotation = -3.14159
+amount = 32
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
+
+[node name="SmokeBlastParticles2D" type="Particles2D" parent="."]
+rotation = -3.14159
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.91
+local_coords = false
+process_material = SubResource( 6 )
+texture = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="SmokeBlastParticles2D"]
+wait_time = 0.001
+one_shot = true
+autostart = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, 0 )
+texture = ExtResource( 1 )
+vframes = 6
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
+
+[node name="ShowTimer" type="Timer" parent="."]
+wait_time = 0.02
+one_shot = true
+autostart = true
+
+[node name="Explosion" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+vframes = 4
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Explosion"]
+autoplay = "start"
+anims/blowup = SubResource( 8 )
+anims/start = SubResource( 9 )
+
+[node name="ExplosionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 10 )
+disabled = true
+[connection signal="timeout" from="SmokeBlastParticles2D/Timer" to="SmokeBlastParticles2D" method="set_emitting" binds= [ true ]]
+[connection signal="timeout" from="ShowTimer" to="Sprite" method="show"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://pickups/Pickup.gd" type="Script" id=1]
+[ext_resource path="res://sprites/shotgun_spritesheet.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="ShotgunPickup" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 1 )
+pickup_type = 2
+amount = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 3, -0.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 41, 26, 6, 5 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -1.5, -0.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 38, 27, 3, 3 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( -4.5, 0 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 35, 28, 3, 2 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( -2, 2 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 38, 30, 2, 2 )
