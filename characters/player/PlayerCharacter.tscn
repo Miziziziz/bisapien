@@ -203,7 +203,11 @@ script = ExtResource( 12 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
 shape = SubResource( 5 )
 
-[node name="PopupUI" type="Control" parent="."]
+[node name="UI" type="Node2D" parent="."]
+z_index = 10
+z_as_relative = false
+
+[node name="PopupUI" type="Control" parent="UI"]
 margin_top = -32.0
 margin_right = 40.0
 margin_bottom = 8.0
@@ -211,7 +215,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WeaponPickupPopup" type="Label" parent="PopupUI"]
+[node name="WeaponPickupPopup" type="Label" parent="UI/PopupUI"]
 margin_left = -43.0
 margin_top = -37.0
 margin_right = 52.0
@@ -219,7 +223,7 @@ margin_bottom = -23.0
 text = "Pickup weapon"
 script = ExtResource( 13 )
 
-[node name="WeaponName" type="Label" parent="PopupUI"]
+[node name="WeaponName" type="Label" parent="UI/PopupUI"]
 margin_left = -47.0
 margin_top = -18.0
 margin_right = 45.0
@@ -228,7 +232,7 @@ text = "Machine Gun"
 align = 1
 valign = 1
 
-[node name="AmmoCount" type="Label" parent="PopupUI"]
+[node name="AmmoCount" type="Label" parent="UI/PopupUI"]
 margin_left = 20.0
 margin_top = -3.0
 margin_right = 60.0
@@ -238,9 +242,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" parent="PopupUI" instance=ExtResource( 15 )]
-[connection signal="health_changed" from="HealthManager" to="PopupUI/HealthBar" method="update_health"]
+[node name="HealthBar" parent="UI/PopupUI" instance=ExtResource( 15 )]
 [connection signal="health_changed" from="HealthManager" to="PickupDetector" method="update_player_health"]
-[connection signal="not_standing_over_weapon" from="PickupDetector" to="PopupUI/WeaponPickupPopup" method="hide"]
+[connection signal="health_changed" from="HealthManager" to="UI/PopupUI/HealthBar" method="update_health"]
+[connection signal="not_standing_over_weapon" from="PickupDetector" to="UI/PopupUI/WeaponPickupPopup" method="hide"]
 [connection signal="picked_up_health" from="PickupDetector" to="HealthManager" method="heal"]
-[connection signal="standing_over_weapon" from="PickupDetector" to="PopupUI/WeaponPickupPopup" method="show_weapon"]
+[connection signal="standing_over_weapon" from="PickupDetector" to="UI/PopupUI/WeaponPickupPopup" method="show_weapon"]

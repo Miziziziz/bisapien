@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://TechnoTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://pickups/RocketLauncherPickup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://pickups/MachineGunPickup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://pickups/ShotgunPickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/RobotGuard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://pickups/Health.tscn" type="PackedScene" id=6]
+[ext_resource path="res://pickups/RocketLauncherAmmoPickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://pickups/MachineGunAmmoPickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://pickups/ShotgunAmmoPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=10]
+
+[node name="World" type="Node2D"]
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Navigation2D"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 30, 30 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 1, 6, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 1, 11, 0, 2, 65536, 0, 65536, 65537, 0, 65537, 65538, 0, 65537, 65539, 0, 65537, 65540, 0, 65537, 65541, 0, 65537, 65542, 0, 65537, 65543, 0, 65537, 65544, 0, 65537, 65545, 0, 65537, 65546, 0, 65537, 65547, 0, 65538, 131072, 0, 65536, 131073, 0, 65537, 131074, 0, 65537, 131075, 0, 65537, 131076, 0, 65537, 131077, 0, 65537, 131078, 0, 65537, 131079, 0, 65537, 131080, 0, 65537, 131081, 0, 65537, 131082, 0, 65537, 131083, 0, 65538, 196608, 0, 65536, 196609, 0, 65537, 196610, 0, 65537, 196611, 0, 65537, 196612, 0, 65537, 196613, 0, 65537, 196614, 0, 65537, 196615, 0, 65537, 196616, 0, 65537, 196617, 0, 65537, 196618, 0, 65537, 196619, 0, 65538, 262144, 0, 65536, 262145, 0, 65537, 262146, 0, 65537, 262147, 0, 65537, 262148, 0, 65537, 262149, 0, 65537, 262150, 0, 65537, 262151, 0, 65537, 262152, 0, 65537, 262153, 0, 65537, 262154, 0, 65537, 262155, 0, 65538, 327680, 0, 65536, 327681, 0, 65537, 327682, 0, 65537, 327683, 0, 65537, 327684, 0, 65537, 327685, 0, 65537, 327686, 0, 65537, 327687, 0, 65537, 327688, 0, 65537, 327689, 0, 65537, 327690, 0, 65537, 327691, 0, 65538, 393216, 0, 65536, 393217, 0, 65537, 393218, 0, 65537, 393219, 0, 65537, 393220, 0, 65537, 393221, 0, 65537, 393222, 0, 65537, 393223, 0, 65537, 393224, 0, 65537, 393225, 0, 65537, 393226, 0, 65537, 393227, 0, 65538, 458752, 0, 131072, 458753, 0, 131073, 458754, 0, 131073, 458755, 0, 131073, 458756, 0, 131073, 458757, 0, 131073, 458758, 0, 131073, 458759, 0, 131073, 458760, 0, 131073, 458761, 0, 131073, 458762, 0, 131073, 458763, 0, 131074 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+
+[node name="Pickups" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HealthPickup" parent="Pickups" instance=ExtResource( 6 )]
+
+[node name="MachineGunAmmoPickup" parent="Pickups" instance=ExtResource( 8 )]
+
+[node name="MachineGunAmmoPickup2" parent="Pickups" instance=ExtResource( 3 )]
+
+[node name="RocketLauncherAmmoPickup" parent="Pickups" instance=ExtResource( 7 )]
+
+[node name="RocketLaunchePickup" parent="Pickups" instance=ExtResource( 2 )]
+
+[node name="ShotgunAmmoPickup" parent="Pickups" instance=ExtResource( 9 )]
+
+[node name="ShotgunPickup" parent="Pickups" instance=ExtResource( 4 )]
+
+[node name="Player" parent="." instance=ExtResource( 10 )]
+
+[node name="RobotGuard" parent="." instance=ExtResource( 5 )]

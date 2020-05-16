@@ -6,7 +6,7 @@ onready var anim_player = $Graphics/Legs/AnimationPlayer
 onready var weapon_manager = $Graphics/Legs/WeaponManager
 onready var pickup_detector = $PickupDetector
 onready var health_manager = $HealthManager
-onready var weapon_name_display = $PopupUI/WeaponName
+onready var weapon_name_display = $UI/PopupUI/WeaponName
 var facing_right = true
 
 var accel = 100
@@ -136,7 +136,7 @@ func update_ammo_display():
 	var ammo_text = str(ammo_count)
 	if ammo_count < 0:
 		ammo_text = ""
-	$PopupUI/AmmoCount.text = ammo_text
+	$UI/PopupUI/AmmoCount.text = ammo_text
 
 func hurt(damage: int, fired_by=null):
 	health_manager.hurt(damage)

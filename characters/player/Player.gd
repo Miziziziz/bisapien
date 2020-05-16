@@ -2,11 +2,11 @@ extends Node2D
 
 
 var min_speed = 100
-var max_speed = 300
+var max_speed = 400
 
 var cur_dist = 0
 var dist_inc = 20
-var min_dist = 20
+var min_dist = 30
 var max_dist_for_speed_calc = 400
 
 onready var player1 = $PlayerCharacter

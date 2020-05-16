@@ -27,6 +27,7 @@ func _physics_process(delta):
 		$BlowupSprite/AnimationPlayer.play("blowup")
 		$Sprite.hide()
 		$CollisionShape2D.disabled = true
+		$ShowTimer.stop()
 		dir = Vector2.ZERO
 		if coll.collider.has_method("hurt"):
 			coll.collider.hurt(damage, fired_by)

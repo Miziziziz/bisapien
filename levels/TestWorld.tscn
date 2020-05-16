@@ -1,154 +1,14 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://pickups/MachineGunAmmoPickup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://pickups/RocketLauncherAmmoPickup.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sprites/TechnoTilesetAdjustedForAutoMap.png" type="Texture" id=4]
+[ext_resource path="res://TechnoTileset.tres" type="TileSet" id=4]
 [ext_resource path="res://pickups/ShotgunAmmoPickup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://pickups/ShotgunPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://pickups/MachineGunPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://pickups/Health.tscn" type="PackedScene" id=8]
 [ext_resource path="res://pickups/RocketLauncherPickup.tscn" type="PackedScene" id=9]
-[ext_resource path="res://characters/RobotGuard.tscn" type="PackedScene" id=10]
-[ext_resource path="res://characters/Alien.tscn" type="PackedScene" id=11]
-
-[sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 0, 0, 30, 0, 30, 30, 0, 30 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 4, 30, 4, 30, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 0, 0, 22, 0, 22, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 4, 0, 30, 0, 30, 30, 4, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 4, 4, 30, 4, 30, 30, 4, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 0, 4, 22, 4, 22, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 0, 0, 30, 0, 30, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 0, 0, 30, 0, 30, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( 0, 0, 30, 0, 30, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=10]
-points = PoolVector2Array( 0, 0, 22, 0, 22, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=11]
-points = PoolVector2Array( 0, 0, 22, 0, 22, 4, 30, 4, 30, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=12]
-points = PoolVector2Array( 0, 4, 4, 4, 4, 0, 30, 0, 30, 30, 0, 30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=13]
-points = PoolVector2Array( 4, 0, 30, 0, 30, 30, 4, 30 )
-
-[sub_resource type="TileSet" id=14]
-0/name = "TechnoTilesetAdjustedForAutoMap.png 0"
-0/texture = ExtResource( 4 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 150, 90 )
-0/tile_mode = 1
-0/autotile/bitmask_mode = 0
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 256, Vector2( 0, 1 ), 260, Vector2( 0, 2 ), 4, Vector2( 1, 0 ), 320, Vector2( 1, 1 ), 325, Vector2( 1, 2 ), 5, Vector2( 2, 0 ), 64, Vector2( 2, 1 ), 65, Vector2( 2, 2 ), 1, Vector2( 3, 0 ), 324, Vector2( 3, 1 ), 261, Vector2( 4, 0 ), 321, Vector2( 4, 1 ), 69 ]
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 30, 30 )
-0/autotile/spacing = 0
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [ Vector2( 1, 1 ), SubResource( 1 ) ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [ Vector3( 0, 0, 1 ), Vector3( 0, 1, 1 ), Vector3( 1, 0, 1 ), Vector3( 2, 0, 1 ), Vector3( 3, 0, 1 ) ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 2 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 1, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 3, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 4, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 4, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 3, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 9 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 11 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 12 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 13 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
 
 [sub_resource type="NavigationPolygon" id=15]
 vertices = PoolVector2Array( 310.845, -99.5684, 1042.42, -388.658, 1316.02, -388.658, 1336.67, 328.903, -330.758, 334.065, 3029.9, 597.343, 3097.01, 1165.2, 2902.32, 979.354, 2902.32, 700.589, 2658.22, 1191.01, 2618.4, 1000, 310.845, -868.752, 1042.42, -1457.26, 1579.3, 1758.86, 1605.11, 1965.35, 970.144, 1949.87, 959.819, 1588.51, 1467.2, 989.678, 2720.17, 1789.84, 1895.67, 984.516, 2436.24, 339.228, 2618.4, 710.914, 1875.02, 700.589, 2007.77, 323.74, -1113.95, -1472.74, -1125.75, -2505.2, 1672.22, -2494.88, -453.177, -1483.07, 1713.52, -1483.07, -148.601, -873.915, -449.491, -238.951, -127.951, -94.406, 3035.07, 344.39, 1997.44, -321.548, 2436.24, -326.71, 1482.69, 710.914, -341.083, 1583.34, -464.978, 323.74, -459.816, 70.7875, -532.088, 60.4629, -521.763, -166.679 )
@@ -223,7 +83,7 @@ position = Vector2( 422.339, -25.9977 )
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
 z_index = -1
-tile_set = SubResource( 14 )
+tile_set = ExtResource( 4 )
 cell_size = Vector2( 30, 30 )
 cell_custom_transform = Transform2D( 30, 0, 0, 30, 0, 0 )
 format = 1
@@ -235,45 +95,3 @@ __meta__ = {
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 visible = false
 navpoly = SubResource( 15 )
-
-[node name="Alien" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 581.926, 530.942 )
-
-[node name="Alien2" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 641.701, 428.973 )
-
-[node name="Alien3" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 400.843, 214.486 )
-
-[node name="Alien4" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 813.993, 260.197 )
-
-[node name="Alien5" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 1070.67, 337.552 )
-
-[node name="Alien6" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 782.348, 587.2 )
-
-[node name="Alien7" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 232.067, 634.669 )
-
-[node name="Alien8" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 172.293, 515.119 )
-
-[node name="Alien9" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( 411.392, 685.653 )
-
-[node name="Alien10" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( -65.0489, 661.04 )
-
-[node name="Alien11" parent="Navigation2D" instance=ExtResource( 11 )]
-position = Vector2( -61.5327, 501.054 )
-
-[node name="RobotGuard" parent="." instance=ExtResource( 10 )]
-position = Vector2( 498.928, 373.627 )
-
-[node name="RobotGuard2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 650.124, 261.109 )
-
-[node name="RobotGuard3" parent="." instance=ExtResource( 10 )]
-position = Vector2( 233.458, 306.819 )

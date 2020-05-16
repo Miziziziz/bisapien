@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="biSapien"
-run/main_scene="res://levels/TestWorld.tscn"
+run/main_scene="res://levels/Tutorial.tscn"
 config/icon="res://icon.png"
 
 [debug]
@@ -37,7 +37,8 @@ gdscript/warnings/integer_division=false
 
 [display]
 
-window/size/fullscreen=true
+window/size/width=1200
+window/size/height=800
 mouse_cursor/custom_image="res://sprites/crosshair.png"
 mouse_cursor/custom_image_hotspot=Vector2( 16, 16 )
 
