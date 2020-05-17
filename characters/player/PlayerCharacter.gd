@@ -140,3 +140,14 @@ func update_ammo_display():
 
 func hurt(damage: int, fired_by=null):
 	health_manager.hurt(damage)
+
+func load_data(player_data):
+	main_weapon = player_data.main_weapon
+	if !player_data.holding_pistol:
+		toggle_pistol()
+
+func save_data():
+	return {
+		"main_weapon": main_weapon,
+		"holding_pistol": holding_pistol
+	}

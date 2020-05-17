@@ -30,6 +30,11 @@ config/name="biSapien"
 run/main_scene="res://levels/Tutorial.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SaveManager="*res://singletons/SaveManager.tscn"
+LevelManager="*res://singletons/LevelManager.tscn"
+
 [debug]
 
 gdscript/warnings/return_value_discarded=false
@@ -39,6 +44,7 @@ gdscript/warnings/integer_division=false
 
 window/size/width=1200
 window/size/height=800
+window/size/fullscreen=true
 mouse_cursor/custom_image="res://sprites/crosshair.png"
 mouse_cursor/custom_image_hotspot=Vector2( 16, 16 )
 

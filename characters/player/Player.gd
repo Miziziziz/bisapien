@@ -20,6 +20,7 @@ func _ready():
 	player1.init(ammo_storage)
 	player2.init(ammo_storage)
 	cur_dist = player1.global_position.distance_to(player2.global_position)
+	load_data()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
@@ -141,4 +142,22 @@ func draw_empty_circle(circle_center : Vector2, circle_radius : float, color : C
 	line_end = circle_radius_vec.rotated(deg2rad(360)) + circle_center
 	draw_line(line_origin, line_end, color)
 
+func load_data():
+	var player_data = SaveManager.get_player_data()
+	if player_data.size() == 0:
+		return
+	ammo_storage.machine_gun_ammo_count = player_data.mg_ammo
+	ammo_storage.shotgun_ammo_count = player_data.sg_ammo
+	ammo_storage.rocket_launcher_ammo_count = player_data.rl_ammo
+	player1.load_data(player_data.player1)
+	player2.load_data(player_data.player2)
+	ammo_storage.emit_ammo_update_signal()
 
+func save_data():
+	var player_data = {}
+	player_data.mg_ammo = ammo_storage.machine_gun_ammo_count
+	player_data.sg_ammo = ammo_storage.shotgun_ammo_count
+	player_data.rl_ammo = ammo_storage.rocket_launcher_ammo_count
+	player_data.player1 = player1.save_data()
+	player_data.player2 = player2.save_data()
+	SaveManager.set_player_data(player_data)

@@ -241,6 +241,7 @@ collision_layer = 0
 collision_mask = 192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+visible = false
 shape = SubResource( 7 )
 
 [node name="AllyDetector" type="Area2D" parent="."]
