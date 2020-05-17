@@ -71,6 +71,7 @@ func set_state_dead():
 	health_bar.hide()
 	anim_player.play("die")
 	wander_timer.stop()
+	$DeathSound.play()
 
 func process_state_idle(delta):
 	var enemy = get_random_visible_enemy()
@@ -101,6 +102,7 @@ func launch_grenade():
 	get_tree().get_root().add_child(grenade_inst)
 	grenade_inst.global_position = global_position
 	grenade_inst.init(self, global_position, target.global_position)
+	$FireSound.play()
 
 func finish_attack():
 	attack_count += 1

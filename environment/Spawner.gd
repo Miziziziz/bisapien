@@ -21,6 +21,7 @@ func start_spawning(_target=null):
 	spawning = true
 	anim_player.play("open")
 	target = _target
+	$SpawnSound.play()
 
 func spawn_alien():
 	if amount_spawned >= num_to_spawn:

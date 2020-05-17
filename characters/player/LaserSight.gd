@@ -37,5 +37,10 @@ func _draw():
 		draw_line(to_local(start_pos), to_local(end_pos), laser_color, 1)
 		#draw_line(to_local(start_pos), to_local(start_pos + dir_to_cursor * 1000), laser_color, 1)
 	
+	if global_position.distance_squared_to(end_pos) < global_position.distance_squared_to(mouse_pos):
+		$Label.set_global_position(end_pos - dir_to_cursor * 60)
+	else:
+		$Label.set_global_position(mouse_pos - dir_to_cursor * 60)
+	
 	#draw_circle(to_local(mouse_pos), 5, Color.red)
 

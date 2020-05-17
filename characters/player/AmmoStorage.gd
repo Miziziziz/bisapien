@@ -2,9 +2,9 @@ extends Node
 
 class_name AmmoStorage
 
-var machine_gun_ammo_count = 5
-var shotgun_ammo_count = 5
-var rocket_launcher_ammo_count = 5
+var machine_gun_ammo_count = 0
+var shotgun_ammo_count = 0
+var rocket_launcher_ammo_count = 0
 
 func _ready():
 	emit_ammo_update_signal()

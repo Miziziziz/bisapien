@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/impactsplat02hitsplat.wav-7949a080e493f7b9857e6abd5716fb05.sample"
+
+[deps]
+
+source_file="res://sfx/impactsplat02hitsplat.wav"
+dest_files=[ "res://.import/impactsplat02hitsplat.wav-7949a080e493f7b9857e6abd5716fb05.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

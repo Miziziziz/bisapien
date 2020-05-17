@@ -16,9 +16,11 @@ func open():
 		return
 	is_open = true
 	anim_player.play("open")
+	$OpenSound.play()
 
 func close():
 	if !is_open:
 		return
 	is_open = false
 	anim_player.play("close")
+	$OpenSound.play()

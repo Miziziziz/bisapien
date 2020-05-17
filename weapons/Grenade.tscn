@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://sprites/ammo.png" type="Texture" id=1]
 [ext_resource path="res://weapons/Grenade.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sprites/smoke.png" type="Texture" id=4]
 [ext_resource path="res://sprites/concus.png" type="Texture" id=5]
 [ext_resource path="res://sprites/crosshair.png" type="Texture" id=6]
+[ext_resource path="res://sfx/Concrete_Explosion_1.wav" type="AudioStream" id=7]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.0518519, 0.592593, 1 )
@@ -30,7 +31,7 @@ scale_random = 1.0
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -174,7 +175,7 @@ amount = 32
 one_shot = true
 explosiveness = 0.91
 local_coords = false
-process_material = SubResource( 12 )
+process_material = SubResource( 6 )
 texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="SmokeBlastParticles2D"]
@@ -215,5 +216,10 @@ anims/start = SubResource( 10 )
 [node name="ExplosionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 11 )
 disabled = true
+
+[node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+attenuation = 0.258816
+bus = "sfx"
 [connection signal="timeout" from="SmokeBlastParticles2D/Timer" to="SmokeBlastParticles2D" method="set_emitting" binds= [ true ]]
 [connection signal="timeout" from="ShowTimer" to="Sprite" method="show"]

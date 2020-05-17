@@ -32,6 +32,9 @@ position = Vector2( -123, 0 )
 dotted = false
 laser_color = Color( 0, 1, 0.0156863, 0.572549 )
 
+[node name="Label" parent="PlayerCharacter/Graphics/Legs/LaserSight" index="0"]
+text = "L"
+
 [node name="PlayerCharacter2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 139.262, 0 )
 

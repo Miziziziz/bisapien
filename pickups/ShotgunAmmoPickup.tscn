@@ -10,7 +10,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource( 1 )
 pickup_type = 3
-amount = 25
+amount = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

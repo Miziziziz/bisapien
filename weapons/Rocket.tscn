@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://sprites/rocket_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://weapons/Rocket.gd" type="Script" id=2]
 [ext_resource path="res://sprites/exp1.png" type="Texture" id=3]
 [ext_resource path="res://sprites/smoke.png" type="Texture" id=4]
+[ext_resource path="res://sfx/Explosion_Clean_2.wav" type="AudioStream" id=5]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.0518519, 0.592593, 1 )
@@ -158,5 +159,9 @@ anims/start = SubResource( 9 )
 [node name="ExplosionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 10 )
 disabled = true
+
+[node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+bus = "sfx"
 [connection signal="timeout" from="SmokeBlastParticles2D/Timer" to="SmokeBlastParticles2D" method="set_emitting" binds= [ true ]]
 [connection signal="timeout" from="ShowTimer" to="Sprite" method="show"]

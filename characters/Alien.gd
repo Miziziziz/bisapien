@@ -23,10 +23,14 @@ export var cohesion_amount = 0.05
 export var repel_amount = 0.1
 var velocity = Vector2()
 var drag = 0.7
-onready var nav : Navigation2D = get_parent()
+onready var nav : Navigation2D
 var dir_of_travel = Vector2.ZERO
 
 func _ready():
+	if get_parent() is Navigation2D:
+		nav = get_parent()
+	elif get_parent().get_parent() is Navigation2D:
+		nav = get_parent().get_parent()
 	health_manager.connect("died", self, "set_state_dead")
 	health_manager.connect("health_changed", health_bar, "update_health")
 	health_bar.hide()
@@ -55,6 +59,7 @@ func set_state_dead():
 	$HitBox.disable()
 	health_bar.hide()
 	anim_player.play("die")
+	$DeathSound.play()
 
 var target = null
 func process_state_idle(delta):
@@ -129,6 +134,7 @@ func finish_attack():
 	can_attack = true
 	if in_attack_range_of_target():
 		target.hurt(damage, self)
+		$AttackSound.play()
 
 func hurt(damage: int, fired_by=null):
 	if fired_by:

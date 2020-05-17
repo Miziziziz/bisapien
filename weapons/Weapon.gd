@@ -68,6 +68,7 @@ func attack(just_pressed: bool, holding: bool):
 		ammo_inst.dir = Vector2.RIGHT.rotated(global_rotation)
 		ammo_inst.init(held_by)
 	attack_timer.start()
+	$FireSound.play()
 
 func finish_attack():
 	can_attack = true

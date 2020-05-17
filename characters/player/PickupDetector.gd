@@ -22,10 +22,12 @@ func on_area_enter(pickup: Pickup):
 			return
 		else:
 			emit_signal("picked_up_health", pickup.amount)
+			$HealthPickup.play()
 			pickup.queue_free()
 	if pickup.is_ammo():
 		emit_signal("picked_up_ammo", pickup.pickup_type, pickup.amount)
 		pickup.queue_free()
+		$AmmoPickup.play()
 
 var weapon_on_ground = null
 func _process(_delta):
@@ -44,5 +46,6 @@ func pickup_weapon_on_ground():
 		return null
 	var wep = weapon_on_ground
 	weapon_on_ground.get_node("CollisionShape2D").disabled = true
+	$WeaponPickup.play()
 	weapon_on_ground = null
 	return wep

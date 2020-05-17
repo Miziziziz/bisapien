@@ -37,6 +37,7 @@ func _physics_process(delta):
 		$TargetSprite.hide()
 		explode()
 		exploded = true
+		$ExplodeSound.play()
 	else:
 		var t = time_in_air / MAX_TIME_IN_AIR
 		var cur_pos = lerp(start_pos, end_pos, t)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://characters/player/LaserSight.gd" type="Script" id=1]
 [ext_resource path="res://sprites/cop.png" type="Texture" id=2]
@@ -16,6 +16,14 @@
 [ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://characters/HealthBar.tscn" type="PackedScene" id=15]
 [ext_resource path="res://characters/HitBox.tscn" type="PackedScene" id=16]
+[ext_resource path="res://sfx/Gunfire_Long_Distance.wav" type="AudioStream" id=17]
+[ext_resource path="res://sfx/cannon_flash.wav" type="AudioStream" id=18]
+[ext_resource path="res://sfx/M4_Shot.wav" type="AudioStream" id=19]
+[ext_resource path="res://sfx/ammo_pickup.wav" type="AudioStream" id=20]
+[ext_resource path="res://sfx/beep_03.wav" type="AudioStream" id=21]
+[ext_resource path="res://sfx/Gun+Reload.wav" type="AudioStream" id=22]
+[ext_resource path="res://sfx/yell1.wav" type="AudioStream" id=23]
+[ext_resource path="res://sfx/3grunt1.wav" type="AudioStream" id=24]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 12.0
@@ -143,6 +151,14 @@ position = Vector2( 2, -12 )
 script = ExtResource( 1 )
 laser_color = Color( 0, 1, 0.858824, 0.572549 )
 
+[node name="Label" type="Label" parent="Graphics/Legs/LaserSight"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "R"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WeaponManager" type="Node2D" parent="Graphics/Legs"]
 position = Vector2( 2, -12 )
 script = ExtResource( 9 )
@@ -151,12 +167,22 @@ script = ExtResource( 9 )
 position = Vector2( 15, 0 )
 script = ExtResource( 10 )
 
+[node name="FireSound" type="AudioStreamPlayer2D" parent="Graphics/Legs/WeaponManager/Pistol"]
+stream = ExtResource( 17 )
+bus = "sfx"
+
 [node name="MachineGun" type="Node2D" parent="Graphics/Legs/WeaponManager"]
 position = Vector2( 15, 0 )
 script = ExtResource( 10 )
 ammo_type = 1
 automatic = true
 attack_rate = 0.1
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="Graphics/Legs/WeaponManager/MachineGun"]
+stream = ExtResource( 19 )
+volume_db = -3.152
+pitch_scale = 1.57
+bus = "sfx"
 
 [node name="Shotgun" type="Node2D" parent="Graphics/Legs/WeaponManager"]
 position = Vector2( 15, 0 )
@@ -180,6 +206,11 @@ arc = 40
 
 [node name="FirePoint6" type="Node2D" parent="Graphics/Legs/WeaponManager/Shotgun/FirePoints"]
 
+[node name="FireSound" type="AudioStreamPlayer2D" parent="Graphics/Legs/WeaponManager/Shotgun"]
+stream = ExtResource( 18 )
+attenuation = 0.392292
+bus = "sfx"
+
 [node name="RocketLauncher" type="Node2D" parent="Graphics/Legs/WeaponManager"]
 position = Vector2( 15, 0 )
 script = ExtResource( 10 )
@@ -187,7 +218,15 @@ ammo_type = 3
 damage = 30
 attack_rate = 0.2
 
+[node name="FireSound" type="AudioStreamPlayer2D" parent="Graphics/Legs/WeaponManager/RocketLauncher"]
+bus = "sfx"
+
 [node name="HealthManager" parent="." instance=ExtResource( 14 )]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="HealthManager"]
+stream = ExtResource( 24 )
+attenuation = 0.00390625
+bus = "sfx"
 
 [node name="HitBox" parent="." instance=ExtResource( 16 )]
 position = Vector2( 0, -16 )
@@ -202,6 +241,18 @@ script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupDetector"]
 shape = SubResource( 5 )
+
+[node name="AmmoPickup" type="AudioStreamPlayer2D" parent="PickupDetector"]
+stream = ExtResource( 20 )
+bus = "sfx"
+
+[node name="WeaponPickup" type="AudioStreamPlayer2D" parent="PickupDetector"]
+stream = ExtResource( 22 )
+bus = "sfx"
+
+[node name="HealthPickup" type="AudioStreamPlayer2D" parent="PickupDetector"]
+stream = ExtResource( 21 )
+bus = "sfx"
 
 [node name="UI" type="Node2D" parent="."]
 z_index = 10
@@ -243,8 +294,12 @@ __meta__ = {
 }
 
 [node name="HealthBar" parent="UI/PopupUI" instance=ExtResource( 15 )]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 23 )
 [connection signal="health_changed" from="HealthManager" to="PickupDetector" method="update_player_health"]
 [connection signal="health_changed" from="HealthManager" to="UI/PopupUI/HealthBar" method="update_health"]
+[connection signal="hurt" from="HealthManager" to="HealthManager/HitSound" method="play"]
 [connection signal="not_standing_over_weapon" from="PickupDetector" to="UI/PopupUI/WeaponPickupPopup" method="hide"]
 [connection signal="picked_up_health" from="PickupDetector" to="HealthManager" method="heal"]
 [connection signal="standing_over_weapon" from="PickupDetector" to="UI/PopupUI/WeaponPickupPopup" method="show_weapon"]

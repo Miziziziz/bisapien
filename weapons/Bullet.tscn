@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/bullet_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://weapons/Bullet.gd" type="Script" id=2]
 [ext_resource path="res://sprites/blowups.png" type="Texture" id=3]
+[ext_resource path="res://sfx/Bullet_hit_car.wav" type="AudioStream" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -99,4 +100,8 @@ frame = 7
 autoplay = "start"
 anims/blowup = SubResource( 3 )
 anims/start = SubResource( 4 )
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "sfx"
 [connection signal="timeout" from="ShowTimer" to="Sprite" method="show"]

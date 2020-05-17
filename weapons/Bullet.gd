@@ -28,6 +28,7 @@ func _physics_process(delta):
 		$Sprite.hide()
 		$CollisionShape2D.disabled = true
 		$ShowTimer.stop()
+		$HitSound.play()
 		dir = Vector2.ZERO
 		if coll.collider.has_method("hurt"):
 			coll.collider.hurt(damage, fired_by)

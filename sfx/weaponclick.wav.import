@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/weaponclick.wav-898b4a71f2130b821adaed4d3985e016.sample"
+
+[deps]
+
+source_file="res://sfx/weaponclick.wav"
+dest_files=[ "res://.import/weaponclick.wav-898b4a71f2130b821adaed4d3985e016.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

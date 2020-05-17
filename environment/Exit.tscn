@@ -19,7 +19,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 37.5, 0 )
-scale = Vector2( 1.5, 4 )
+scale = Vector2( 1.5, 6 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 27, 31, 30, 30 )
@@ -27,7 +27,7 @@ region_rect = Rect2( 27, 31, 30, 30 )
 [node name="Sprite2" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 0.584314 )
 position = Vector2( -7.5, 0 )
-scale = Vector2( 1.5, 4 )
+scale = Vector2( 1.5, 6 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 27, 31, 30, 30 )
@@ -35,7 +35,7 @@ region_rect = Rect2( 27, 31, 30, 30 )
 [node name="Sprite3" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 0.247059 )
 position = Vector2( -52.5, 0 )
-scale = Vector2( 1.5, 4 )
+scale = Vector2( 1.5, 6 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 27, 31, 30, 30 )

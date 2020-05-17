@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://characters/HitBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://sprites/jug.png" type="Texture" id=4]
 [ext_resource path="res://sprites/exp1.png" type="Texture" id=5]
 [ext_resource path="res://characters/RobotGuard.gd" type="Script" id=6]
+[ext_resource path="res://sfx/Explosion_Clean_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://sfx/184650__isaac200000__cannon1.wav" type="AudioStream" id=8]
+[ext_resource path="res://sfx/Bullet_hit_car2.wav" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -225,6 +228,10 @@ one_shot = true
 [node name="HealthManager" parent="." instance=ExtResource( 2 )]
 max_health = 400
 
+[node name="HitSound" type="AudioStreamPlayer2D" parent="HealthManager"]
+stream = ExtResource( 9 )
+bus = "sfx"
+
 [node name="HealthBar" parent="." instance=ExtResource( 3 )]
 margin_left = -16.0
 margin_top = -19.0
@@ -251,3 +258,12 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AllyDetector"]
 visible = false
 shape = SubResource( 7 )
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+bus = "sfx"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+bus = "sfx"
+[connection signal="hurt" from="HealthManager" to="HealthManager/HitSound" method="play"]

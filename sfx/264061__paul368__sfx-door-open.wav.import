@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/264061__paul368__sfx-door-open.wav-5172aff4b4a5be244a22860ace5ccfc6.sample"
+
+[deps]
+
+source_file="res://sfx/264061__paul368__sfx-door-open.wav"
+dest_files=[ "res://.import/264061__paul368__sfx-door-open.wav-5172aff4b4a5be244a22860ace5ccfc6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
