@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cagey_House_-_03_-_Shadow_Time.ogg-e8039b45cbe16bafce517d208a7c676e.oggstr"
+
+[deps]
+
+source_file="res://music/Cagey_House_-_03_-_Shadow_Time.ogg"
+dest_files=[ "res://.import/Cagey_House_-_03_-_Shadow_Time.ogg-e8039b45cbe16bafce517d208a7c676e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

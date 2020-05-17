@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cagey_House_-_04_-_Crypto_II_Dude_Lord_Draco.ogg-5b60f16765a80842ec24b7206b814048.oggstr"
+
+[deps]
+
+source_file="res://music/Cagey_House_-_04_-_Crypto_II_Dude_Lord_Draco.ogg"
+dest_files=[ "res://.import/Cagey_House_-_04_-_Crypto_II_Dude_Lord_Draco.ogg-5b60f16765a80842ec24b7206b814048.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

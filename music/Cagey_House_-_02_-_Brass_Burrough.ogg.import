@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cagey_House_-_02_-_Brass_Burrough.ogg-ff072f4d615cfe950f1a3c191d6c4950.oggstr"
+
+[deps]
+
+source_file="res://music/Cagey_House_-_02_-_Brass_Burrough.ogg"
+dest_files=[ "res://.import/Cagey_House_-_02_-_Brass_Burrough.ogg-ff072f4d615cfe950f1a3c191d6c4950.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

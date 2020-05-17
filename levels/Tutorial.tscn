@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://TechnoTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://pickups/RocketLauncherPickup.tscn" type="PackedScene" id=2]
@@ -16,8 +16,9 @@
 [ext_resource path="res://environment/PlayerEnterTrigger.tscn" type="PackedScene" id=14]
 [ext_resource path="res://environment/Spawner.tscn" type="PackedScene" id=15]
 [ext_resource path="res://environment/Exit.tscn" type="PackedScene" id=16]
+[ext_resource path="res://music/Cagey_House_-_03_-_Shadow_Time.ogg" type="AudioStream" id=17]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 4
@@ -25,9 +26,9 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="Theme" id=2]
-Panel/styles/panel = SubResource( 1 )
+Panel/styles/panel = SubResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 321.621, 349.748 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -301,7 +302,7 @@ position = Vector2( 2512.08, 306.12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnterTrigger"]
 position = Vector2( 330.014, -1.37183 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerEnterTrigger"]
 position = Vector2( -37.0825, -201.12 )
@@ -321,6 +322,10 @@ shape = SubResource( 5 )
 
 [node name="Exit" parent="." instance=ExtResource( 16 )]
 position = Vector2( 4590, 300 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+autoplay = true
 [connection signal="done_spawning_pass_target" from="Navigation2D/Spawner" to="Navigation2D/Spawner2" method="start_spawning"]
 [connection signal="done_spawning_pass_target" from="Navigation2D/Spawner2" to="Navigation2D/Spawner4" method="start_spawning"]
 [connection signal="activated" from="2SwitchDoor/MultiSwitch" to="2SwitchDoor/Door" method="open"]

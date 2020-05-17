@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cagey_House_-_07_-_Manic_in_Repose.ogg-934ebc04ca9b2ff2476f77d5ecd9cadb.oggstr"
+
+[deps]
+
+source_file="res://music/Cagey_House_-_07_-_Manic_in_Repose.ogg"
+dest_files=[ "res://.import/Cagey_House_-_07_-_Manic_in_Repose.ogg-934ebc04ca9b2ff2476f77d5ecd9cadb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

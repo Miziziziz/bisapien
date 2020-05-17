@@ -5,7 +5,7 @@ const ANGLE_BETWEEN_FRAMES = 360 / NUM_OF_ROTATION_FRAMES
 
 var damage = 1
 var bodies_to_exclude = []
-var speed = 600
+var speed = 1000
 var dir = Vector2.RIGHT
 var held_by = null
 
@@ -33,6 +33,7 @@ func _physics_process(delta):
 		$CollisionShape2D.disabled=true
 		dir = Vector2.ZERO
 		$ShowTimer.stop()
+		$ExplodeSound.play()
 		explode()
 
 func explode():

@@ -11,3 +11,4 @@ func run_next_spawner(target):
 		return
 	spawners[0].start_spawning(target)
 	spawners.pop_front()
+

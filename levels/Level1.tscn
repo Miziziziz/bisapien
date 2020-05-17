@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://TechnoTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/SpawnerManager.tscn" type="PackedScene" id=2]
@@ -16,13 +16,14 @@
 [ext_resource path="res://environment/Spawner.tscn" type="PackedScene" id=14]
 [ext_resource path="res://environment/PlayerEnterTrigger.tscn" type="PackedScene" id=15]
 [ext_resource path="res://environment/2SwitchDoor.tscn" type="PackedScene" id=16]
+[ext_resource path="res://music/Cagey_House_-_02_-_Brass_Burrough.ogg" type="AudioStream" id=17]
 
-[sub_resource type="CanvasItemMaterial" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 120, 135 )
+[sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 120, 135 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 150, 75 )
 
 [node name="World" type="Node2D"]
@@ -129,7 +130,7 @@ position = Vector2( 1995, 1155 )
 position = Vector2( 2085, 1155 )
 
 [node name="HealthPickup5" parent="Pickups" instance=ExtResource( 6 )]
-material = SubResource( 3 )
+material = SubResource( 1 )
 position = Vector2( 1575, 2355 )
 
 [node name="HealthPickup6" parent="Pickups" instance=ExtResource( 6 )]
@@ -188,18 +189,18 @@ position = Vector2( 510, 1575 )
 both_players = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnterTrigger"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerEnterTrigger"]
 position = Vector2( -195, 240 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="PlayerEnterTrigger2" parent="." instance=ExtResource( 15 )]
 position = Vector2( 1740, 1665 )
 both_players = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnterTrigger2"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="PlayerEnterTrigger3" parent="." instance=ExtResource( 15 )]
 position = Vector2( 2580, 1890 )
@@ -207,7 +208,7 @@ both_players = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnterTrigger3"]
 position = Vector2( 0, 75 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="PlayerEnterTrigger4" parent="." instance=ExtResource( 15 )]
 position = Vector2( 2580, 2370 )
@@ -215,7 +216,7 @@ both_players = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnterTrigger4"]
 position = Vector2( 0, 90 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Exit" parent="." instance=ExtResource( 7 )]
 position = Vector2( 3435, 2280 )
@@ -231,9 +232,13 @@ position = Vector2( -270, -60 )
 
 [node name="Door" parent="2SwitchDoor2" index="1"]
 position = Vector2( 15, -3.00407e-05 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+autoplay = true
+[connection signal="activated" from="2SwitchDoor/MultiSwitch" to="2SwitchDoor/Door" method="open"]
 [connection signal="activated" from="2SwitchDoor/MultiSwitch" to="2SwitchDoor/Door3" method="open"]
 [connection signal="activated" from="2SwitchDoor/MultiSwitch" to="2SwitchDoor/Door2" method="open"]
-[connection signal="activated" from="2SwitchDoor/MultiSwitch" to="2SwitchDoor/Door" method="open"]
 [connection signal="player_entered_pass_player_param" from="PlayerEnterTrigger" to="Navigation2D/Spawner" method="start_spawning"]
 [connection signal="player_entered_pass_player_param" from="PlayerEnterTrigger" to="Navigation2D/Spawner2" method="start_spawning"]
 [connection signal="player_entered_pass_player_param" from="PlayerEnterTrigger2" to="Navigation2D/SpawnerManager" method="run_next_spawner"]
