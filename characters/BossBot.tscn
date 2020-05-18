@@ -1,0 +1,205 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://sprites/rob1.png" type="Texture" id=1]
+[ext_resource path="res://characters/BossBot.gd" type="Script" id=2]
+[ext_resource path="res://characters/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/HurtBox.gd" type="Script" id=5]
+[ext_resource path="res://characters/HitBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://characters/SparksArea.gd" type="Script" id=7]
+[ext_resource path="res://sprites/smoke.png" type="Texture" id=8]
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 42.7702
+height = 56.0401
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "spin"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 45, 45 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 37.3384, 44.4867 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 15.5943 )
+
+[sub_resource type="CanvasItemMaterial" id=11]
+blend_mode = 1
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0.723864 ), 0.0, 0.863637, 0, 0, Vector2( 1, 0 ), -4.38137, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 2
+emission_box_extents = Vector3( 5, 10, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_random = 1.0
+scale_curve = SubResource( 9 )
+color = Color( 1, 0.905882, 0.262745, 1 )
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.4375, 1 )
+colors = PoolColorArray( 0.47561, 0.47561, 0.47561, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 1
+emission_sphere_radius = 20.28
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 5.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 1.5
+scale_random = 1.0
+color_ramp = SubResource( 13 )
+
+[node name="BossBot" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2( 3.71886, -0.271629 )
+rotation = 1.57079
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+vframes = 3
+hframes = 4
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/idle = SubResource( 2 )
+anims/spin = SubResource( 3 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 448
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 30, 0 )
+rotation = 1.57079
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="HurtBox"]
+autostart = true
+
+[node name="HitBox" parent="." instance=ExtResource( 6 )]
+position = Vector2( -37.865, 0 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 5 )
+
+[node name="HealthManager" parent="." instance=ExtResource( 4 )]
+max_health = 2000
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="HealthBar" parent="UI" instance=ExtResource( 3 )]
+margin_left = -62.0
+margin_top = -52.0
+margin_right = 60.0
+margin_bottom = -50.0
+value = 100.0
+
+[node name="SparksArea" type="Area2D" parent="."]
+position = Vector2( 74.0491, 0 )
+collision_layer = 0
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SparksArea"]
+shape = SubResource( 7 )
+
+[node name="Particles2D" type="Particles2D" parent="SparksArea"]
+material = SubResource( 11 )
+amount = 32
+lifetime = 0.2
+local_coords = false
+process_material = SubResource( 10 )
+
+[node name="SparksArea2" type="Area2D" parent="."]
+position = Vector2( 74.0491, 31.8569 )
+collision_layer = 0
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SparksArea2"]
+shape = SubResource( 7 )
+
+[node name="Particles2D" type="Particles2D" parent="SparksArea2"]
+material = SubResource( 11 )
+amount = 32
+lifetime = 0.2
+local_coords = false
+process_material = SubResource( 10 )
+
+[node name="SparksArea3" type="Area2D" parent="."]
+position = Vector2( 74.0491, -30.7272 )
+collision_layer = 0
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SparksArea3"]
+shape = SubResource( 7 )
+
+[node name="Particles2D" type="Particles2D" parent="SparksArea3"]
+material = SubResource( 11 )
+amount = 32
+lifetime = 0.2
+local_coords = false
+process_material = SubResource( 10 )
+
+[node name="SmokeParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 2.0
+local_coords = false
+process_material = SubResource( 14 )
+texture = ExtResource( 8 )
+[connection signal="timeout" from="HurtBox/Timer" to="HurtBox" method="hurt_all_inside"]

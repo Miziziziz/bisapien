@@ -55,8 +55,8 @@ func set_state_chase():
 	
 func set_state_dead():
 	cur_state = STATES.DEAD
-	$CollisionShape2D.disabled = true
-	$HitBox.disable()
+	$CollisionShape2D.call_deferred("set_disabled", true)#disabled = true
+	$HitBox.call_deferred("disable")
 	health_bar.hide()
 	anim_player.play("die")
 	$DeathSound.play()

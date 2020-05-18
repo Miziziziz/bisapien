@@ -9,5 +9,6 @@ var level_list = [
 
 func load_next_level():
 	level_ind += 1
+	get_tree().call_group("instanced", "queue_free")
 	get_tree().change_scene(level_list[level_ind % level_list.size()])
 	$LevelStartSound.play()
