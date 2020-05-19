@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="biSapien"
-run/main_scene="res://levels/Tutorial.tscn"
+run/main_scene="res://levels/IntroScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -44,6 +44,7 @@ gdscript/warnings/integer_division=false
 
 window/size/width=1200
 window/size/height=800
+window/size/fullscreen=true
 mouse_cursor/custom_image="res://sprites/crosshair.png"
 mouse_cursor/custom_image_hotspot=Vector2( 16, 16 )
 
@@ -130,6 +131,11 @@ switch_weapon_left={
 switch_weapon_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":50,"unicode":0,"echo":false,"script":null)
+ ]
+}
+continue={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
  ]
 }
 

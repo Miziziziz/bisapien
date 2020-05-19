@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://characters/player/PlayerCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://characters/player/AmmoStorage.gd" type="Script" id=3]
 [ext_resource path="res://characters/player/AmmoDisplay.gd" type="Script" id=4]
 [ext_resource path="res://sprites/concus.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 4
+border_width_right = 1
+border_width_bottom = 1
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 2 )
@@ -40,6 +47,33 @@ position = Vector2( 139.262, 0 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="RestartMessage" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -15.5
+margin_right = 58.0
+margin_bottom = 15.5
+text = "You died
+Press 'X' to restart"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CanvasLayer/RestartMessage"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.0
+margin_top = -5.0
+margin_right = 3.0
+margin_bottom = 3.0
+custom_styles/panel = SubResource( 1 )
+
 [node name="PlayerUI" type="Control" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -52,12 +86,51 @@ __meta__ = {
 }
 
 [node name="Player1" type="Control" parent="CanvasLayer/PlayerUI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 81.5037
+margin_top = -41.1322
+margin_right = 121.504
+margin_bottom = -1.13222
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PlayerUI/Player1"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -15.5
+margin_right = 48.0
+margin_bottom = 15.5
+text = "Main weapon:
+Empty"
 
 [node name="Player2" type="Control" parent="CanvasLayer/PlayerUI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -142.73
+margin_top = -41.1322
+margin_right = -102.73
+margin_bottom = -1.13222
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PlayerUI/Player2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -44.0
+margin_top = -15.5
+margin_right = 44.0
+margin_bottom = 15.5
+text = "Main weapon:
+Empty"
+align = 2
 
 [node name="AmmoDisplay" type="Label" parent="CanvasLayer/PlayerUI"]
 anchor_left = 0.5

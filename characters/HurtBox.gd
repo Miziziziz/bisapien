@@ -6,6 +6,9 @@ func _ready():
 	connect("body_entered", self, "on_body_enter")
 
 
+func disable():
+	$CollisionShape2D.call_deferred("set_disabled", true)
+
 func on_body_enter(coll):
 	if coll.has_method("hurt"):
 		coll.hurt(damage)

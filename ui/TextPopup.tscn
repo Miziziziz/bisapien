@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/TextPopup.gd" type="Script" id=1]
+[ext_resource path="res://sfx/Analogue Synth Tone, Varispeed Data, Movement.wav" type="AudioStream" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 4
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="TextPopup" type="Label"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -127.0
+margin_right = -106.0
+margin_bottom = -113.0
+text = "asdasd"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.0
+margin_top = -5.0
+margin_right = 3.0
+margin_bottom = 3.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="TextSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = 3.537
+bus = "sfx"

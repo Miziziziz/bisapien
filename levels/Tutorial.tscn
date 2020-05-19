@@ -18,7 +18,7 @@
 [ext_resource path="res://environment/Exit.tscn" type="PackedScene" id=16]
 [ext_resource path="res://music/Cagey_House_-_03_-_Shadow_Time.ogg" type="AudioStream" id=17]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 4
@@ -26,9 +26,9 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="Theme" id=2]
-Panel/styles/panel = SubResource( 3 )
+Panel/styles/panel = SubResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 321.621, 349.748 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -302,7 +302,7 @@ position = Vector2( 2512.08, 306.12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnterTrigger"]
 position = Vector2( 330.014, -1.37183 )
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerEnterTrigger"]
 position = Vector2( -37.0825, -201.12 )

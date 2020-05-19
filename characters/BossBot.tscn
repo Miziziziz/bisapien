@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://sprites/rob1.png" type="Texture" id=1]
 [ext_resource path="res://characters/BossBot.gd" type="Script" id=2]
@@ -8,8 +8,11 @@
 [ext_resource path="res://characters/HitBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://characters/SparksArea.gd" type="Script" id=7]
 [ext_resource path="res://sprites/smoke.png" type="Texture" id=8]
+[ext_resource path="res://sfx/angle_grinder.wav" type="AudioStream" id=9]
+[ext_resource path="res://sfx/Dying Robot-SoundBible.com-1721415199.wav" type="AudioStream" id=10]
+[ext_resource path="res://sfx/motorsound.wav" type="AudioStream" id=11]
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 42.7702
 height = 56.0401
 
@@ -50,10 +53,10 @@ extents = Vector2( 45, 45 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 37.3384, 44.4867 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 15.5943 )
 
-[sub_resource type="CanvasItemMaterial" id=11]
+[sub_resource type="CanvasItemMaterial" id=7]
 blend_mode = 1
 
 [sub_resource type="Curve" id=8]
@@ -76,14 +79,14 @@ scale_random = 1.0
 scale_curve = SubResource( 9 )
 color = Color( 1, 0.905882, 0.262745, 1 )
 
-[sub_resource type="Gradient" id=12]
+[sub_resource type="Gradient" id=11]
 offsets = PoolRealArray( 0, 0.4375, 1 )
 colors = PoolColorArray( 0.47561, 0.47561, 0.47561, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=13]
-gradient = SubResource( 12 )
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
 
-[sub_resource type="ParticlesMaterial" id=14]
+[sub_resource type="ParticlesMaterial" id=13]
 emission_shape = 1
 emission_sphere_radius = 20.28
 flag_disable_z = true
@@ -96,7 +99,7 @@ angle = 720.0
 angle_random = 1.0
 scale = 1.5
 scale_random = 1.0
-color_ramp = SubResource( 13 )
+color_ramp = SubResource( 12 )
 
 [node name="BossBot" type="KinematicBody2D"]
 collision_layer = 0
@@ -105,14 +108,13 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2( 3.71886, -0.271629 )
 rotation = 1.57079
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 4
-frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -156,10 +158,10 @@ collision_layer = 0
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SparksArea"]
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Particles2D" type="Particles2D" parent="SparksArea"]
-material = SubResource( 11 )
+material = SubResource( 7 )
 amount = 32
 lifetime = 0.2
 local_coords = false
@@ -171,10 +173,10 @@ collision_layer = 0
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SparksArea2"]
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Particles2D" type="Particles2D" parent="SparksArea2"]
-material = SubResource( 11 )
+material = SubResource( 7 )
 amount = 32
 lifetime = 0.2
 local_coords = false
@@ -186,10 +188,10 @@ collision_layer = 0
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SparksArea3"]
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Particles2D" type="Particles2D" parent="SparksArea3"]
-material = SubResource( 11 )
+material = SubResource( 7 )
 amount = 32
 lifetime = 0.2
 local_coords = false
@@ -200,6 +202,19 @@ emitting = false
 amount = 32
 lifetime = 2.0
 local_coords = false
-process_material = SubResource( 14 )
+process_material = SubResource( 13 )
 texture = ExtResource( 8 )
+
+[node name="GrinderSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+attenuation = 0.5
+bus = "sfx"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+bus = "sfx"
+
+[node name="MotorSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+bus = "sfx"
 [connection signal="timeout" from="HurtBox/Timer" to="HurtBox" method="hurt_all_inside"]

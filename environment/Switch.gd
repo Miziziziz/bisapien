@@ -10,10 +10,10 @@ func _ready():
 	connect("body_exited", self, "body_exited")
 
 var body_count = 0
-func body_entered(coll):
+func body_entered(_coll):
 	body_count+=1
 	update_state()
-func body_exited(coll):
+func body_exited(_coll):
 	body_count-=1
 	update_state()
 

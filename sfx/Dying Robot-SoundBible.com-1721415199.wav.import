@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dying Robot-SoundBible.com-1721415199.wav-4c7c8b7774145467bc782dca57d30ce3.sample"
+
+[deps]
+
+source_file="res://sfx/Dying Robot-SoundBible.com-1721415199.wav"
+dest_files=[ "res://.import/Dying Robot-SoundBible.com-1721415199.wav-4c7c8b7774145467bc782dca57d30ce3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -297,8 +297,8 @@ __meta__ = {
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 23 )
-[connection signal="health_changed" from="HealthManager" to="PickupDetector" method="update_player_health"]
 [connection signal="health_changed" from="HealthManager" to="UI/PopupUI/HealthBar" method="update_health"]
+[connection signal="health_changed" from="HealthManager" to="PickupDetector" method="update_player_health"]
 [connection signal="hurt" from="HealthManager" to="HealthManager/HitSound" method="play"]
 [connection signal="not_standing_over_weapon" from="PickupDetector" to="UI/PopupUI/WeaponPickupPopup" method="hide"]
 [connection signal="picked_up_health" from="PickupDetector" to="HealthManager" method="heal"]

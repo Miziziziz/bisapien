@@ -66,7 +66,7 @@ func set_state_attack():
 	
 func set_state_dead():
 	cur_state = STATES.DEAD
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.call_deferred("set_disabled", true) #.disabled = true
 	$HitBox.disable()
 	health_bar.hide()
 	anim_player.play("die")

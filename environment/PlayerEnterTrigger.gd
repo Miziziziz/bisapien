@@ -22,5 +22,5 @@ func on_body_enter(coll):
 		emit_signal("player_entered")
 		emit_signal("player_entered_pass_player_param", coll)
 
-func on_body_exit(coll):
+func on_body_exit(_coll):
 	body_count -= 1

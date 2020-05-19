@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://environment/IntroScreen.gd" type="Script" id=1]
+[ext_resource path="res://music/Broke_For_Free_-_05_-_Something_Elated.ogg" type="AudioStream" id=2]
+
+[node name="EndScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+allow_continue = false
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -142.5
+margin_top = -220.0
+margin_right = 142.5
+margin_bottom = -110.0
+text = "You overload the reactor core on the massive digging machine, then quickly leave the facility."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -142.5
+margin_top = -130.0
+margin_right = 142.5
+margin_bottom = -20.0
+text = "Your ship lifts off the planet's surface, as you exit the atmosphere an explosion rips apart the rocky surface."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -105.0
+margin_top = -25.0
+margin_right = 122.0
+margin_bottom = 193.0
+text = "The End
+Thanks for playing!
+
+press Esc to close
+
+Created by Miziziziz
+
+Music:
+Brass Burrough by Cagey House
+Shadow Time by Cagey House
+Manic in Repose by Cagey House
+Something Elated by Broke For Free
+Epic Song by BoxCat Games"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true

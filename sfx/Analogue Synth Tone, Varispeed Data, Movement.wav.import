@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Analogue Synth Tone, Varispeed Data, Movement.wav-db530642b049da8e26a976cffad96ba7.sample"
+
+[deps]
+
+source_file="res://sfx/Analogue Synth Tone, Varispeed Data, Movement.wav"
+dest_files=[ "res://.import/Analogue Synth Tone, Varispeed Data, Movement.wav-db530642b049da8e26a976cffad96ba7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

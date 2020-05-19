@@ -15,12 +15,22 @@ onready var player2 = $PlayerCharacter2
 onready var cam = $Camera2D
 onready var ammo_storage = $AmmoStorage
 
+var dead = false
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	player1.init(ammo_storage)
 	player2.init(ammo_storage)
 	cur_dist = player1.global_position.distance_to(player2.global_position)
 	load_data()
+	player1.get_node("HealthManager").connect("died", self, "kill")
+	player2.get_node("HealthManager").connect("died", self, "kill")
+	
+	player1.connect("picked_up_new_weapon", self, "update_weapon_display", [$CanvasLayer/PlayerUI/Player1/Label])
+	player2.connect("picked_up_new_weapon", self, "update_weapon_display", [$CanvasLayer/PlayerUI/Player2/Label])
+	
+	update_weapon_display(player1.get_weapon_display_name(), $CanvasLayer/PlayerUI/Player1/Label)
+	update_weapon_display(player2.get_weapon_display_name(), $CanvasLayer/PlayerUI/Player2/Label)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
@@ -29,6 +39,8 @@ func _process(_delta):
 		get_tree().call_group("instanced", "queue_free")
 		get_tree().reload_current_scene()
 	
+	if dead:
+		return
 	var attack_left = Input.is_action_just_pressed("attack_left")
 	var attack_left_held = Input.is_action_pressed("attack_left")
 	var attack_right = Input.is_action_just_pressed("attack_right")
@@ -46,6 +58,8 @@ func _process(_delta):
 		player2.toggle_pistol()
 
 func _input(event):
+	if dead:
+		return
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_WHEEL_UP:
 			move_closer_together()
@@ -53,6 +67,8 @@ func _input(event):
 			move_farther_apart()
 
 func _physics_process(_delta):
+	if dead:
+		return
 	var move_vec = Vector2()
 	if Input.is_action_pressed("move_left"):
 		move_vec += Vector2.LEFT
@@ -101,9 +117,9 @@ func handle_movement(character: KinematicBody2D, move_vec: Vector2, vec_to_other
 	if abs(p_dist_diff) > 10:
 		move_vec += vec_to_other.normalized() * sign(p_dist_diff) * -1
 	
-	var move_vec_len = move_vec.length()
-	if move_vec_len > 1.0:
-		move_vec / move_vec_len
+#	var move_vec_len = move_vec.length()
+#	if move_vec_len > 1.0:
+#		move_vec /= move_vec_len
 	character.accel = move_speed
 	character.move_vec = move_vec
 
@@ -161,3 +177,14 @@ func save_data():
 	player_data.player1 = player1.save_data()
 	player_data.player2 = player2.save_data()
 	SaveManager.set_player_data(player_data)
+
+func kill():
+	dead = true
+	player1.move_vec = Vector2.ZERO
+	player2.move_vec = Vector2.ZERO
+	$CanvasLayer/RestartMessage.show()
+
+func update_weapon_display(wep_name, label):
+	if wep_name == "Pistol":
+		return
+	label.text = "Main Weapon:\n" + wep_name

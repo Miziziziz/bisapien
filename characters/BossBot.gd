@@ -38,6 +38,8 @@ func set_state_dead():
 	emit_signal("died")
 	$SmokeParticles.emitting = true
 	deactivate_sparks_areas()
+	$HurtBox.disable()
+	$DeathSound.play()
 
 var target = null
 var cur_attack_time = 0.0
@@ -47,6 +49,8 @@ func set_state_attack():
 	cur_attack_state = ATTACK_STATES.AIM
 	choose_rand_target()
 	deactivate_sparks_areas()
+	$MotorSound.play()
+	$MotorSound.volume_db = linear2db(0.0)
 
 func aim(delta):
 	anim_player.stop(false)
@@ -54,32 +58,47 @@ func aim(delta):
 	
 	var r = Vector2.DOWN.rotated(global_rotation)
 	var dir_to_target = global_position.direction_to(target.global_position)
-	var diff = r.angle_to(dir_to_target)
+#	var diff = r.angle_to(dir_to_target)
 #	if diff < deg2rad(turn_speed) * delta:
 #		global_rotation = global_position.angle_to_point(target.global_position)
 #	else:
 	global_rotation += deg2rad(turn_speed) * delta * r.dot(dir_to_target)
 	
 	cur_attack_time += delta
+	$MotorSound.volume_db = linear2db(4 * cur_attack_time / aim_time)
 	if cur_attack_time > aim_time:
 		cur_attack_state = ATTACK_STATES.CHARGE
 		cur_attack_time = 0.0
 		activate_sparks_areas()
 
 func charge(delta):
+	var grinding_something = false
+	for sparks_area in sparks_areas:
+		if sparks_area.grinding_something:
+			grinding_something = true
+			break
+	if grinding_something and !$GrinderSound.playing:
+		$GrinderSound.play()
+	elif !grinding_something and $GrinderSound.playing:
+		$GrinderSound.stop()
+	
+	
 	cur_attack_time += delta
 	if cur_attack_time > charge_time:
 		cur_attack_state = ATTACK_STATES.AIM
 		cur_attack_time = 0.0
 		choose_rand_target()
 		deactivate_sparks_areas()
+		$GrinderSound.stop()
+		$MotorSound.stop()
+		$MotorSound.play()
 	var move_dir = Vector2.RIGHT.rotated(global_rotation)
 	move_and_slide(move_dir * charge_speed, Vector2.ZERO)
 
 func choose_rand_target():
 	target = players[randi() % players.size()]
 
-func hurt(damage, fired_by=null):
+func hurt(damage, _fired_by=null):
 	health_manager.hurt(damage)
 
 onready var sparks_areas = [

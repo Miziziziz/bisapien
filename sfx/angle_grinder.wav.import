@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/angle_grinder.wav-c78ba8aca4c67b07fe62391282b8877b.sample"
+
+[deps]
+
+source_file="res://sfx/angle_grinder.wav"
+dest_files=[ "res://.import/angle_grinder.wav-c78ba8aca4c67b07fe62391282b8877b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

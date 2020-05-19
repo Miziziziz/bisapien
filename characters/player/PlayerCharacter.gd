@@ -18,6 +18,8 @@ enum WEAPONS {PISTOL, MACHINE_GUN, SHOTGUN, ROCKET_LAUNCHER}
 var main_weapon = null
 var holding_pistol = true
 
+signal picked_up_new_weapon
+
 func init(_ammo_storage):
 	weapon_manager.init(_ammo_storage, self)
 	pickup_detector.connect("picked_up_ammo", _ammo_storage, "pickup_ammo")
@@ -103,12 +105,15 @@ func pickup_weapon(weapon: Pickup):
 	if weapon.pickup_type == Pickup.PICKUP_TYPES.MACHINE_GUN:
 		main_weapon = WEAPONS.MACHINE_GUN
 		switch_to_machine_gun()
+		emit_signal("picked_up_new_weapon", "Machine Gun")
 	if weapon.pickup_type == Pickup.PICKUP_TYPES.SHOTGUN:
 		main_weapon = WEAPONS.SHOTGUN
 		switch_to_shotgun()
+		emit_signal("picked_up_new_weapon", "Shotgun")
 	if weapon.pickup_type == Pickup.PICKUP_TYPES.ROCKET_LAUNCHER:
 		main_weapon = WEAPONS.ROCKET_LAUNCHER
 		switch_to_rocket_launcher()
+		emit_signal("picked_up_new_weapon", "Rocket Launcher")
 	weapon.queue_free()
 
 
@@ -138,7 +143,7 @@ func update_ammo_display():
 		ammo_text = ""
 	$UI/PopupUI/AmmoCount.text = ammo_text
 
-func hurt(damage: int, fired_by=null):
+func hurt(damage: int, _fired_by=null):
 	health_manager.hurt(damage)
 
 func load_data(player_data):
@@ -151,3 +156,6 @@ func save_data():
 		"main_weapon": main_weapon,
 		"holding_pistol": holding_pistol
 	}
+
+func get_weapon_display_name():
+	return weapon_name_display.text

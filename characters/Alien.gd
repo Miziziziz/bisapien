@@ -56,13 +56,13 @@ func set_state_chase():
 func set_state_dead():
 	cur_state = STATES.DEAD
 	$CollisionShape2D.call_deferred("set_disabled", true)#disabled = true
-	$HitBox.call_deferred("disable")
+	$HitBox.disable()
 	health_bar.hide()
 	anim_player.play("die")
 	$DeathSound.play()
 
 var target = null
-func process_state_idle(delta):
+func process_state_idle(_delta):
 	var nearest_enemy = get_nearest_visible_enemy()
 	if nearest_enemy != null:
 		target = nearest_enemy
@@ -79,13 +79,12 @@ func process_state_chase(delta):
 			if dist_to_near < dist_to_cur:
 				target = nearest_enemy
 	
-	var in_attack_range = in_attack_range_of_target()
 	if can_attack:
 		start_attack()
 	move_to_target(delta)
 
 
-func move_to_target(delta):
+func move_to_target(_delta):
 	if nav == null or target == null:
 		return
 	var path = nav.get_simple_path(global_position, target.global_position)
@@ -123,7 +122,7 @@ func move_to_target(delta):
 	if target.global_position.x > global_position.x and !facing_right:
 		flip()
 
-func process_state_dead(delta):
+func process_state_dead(_delta):
 	pass
 
 func start_attack():
@@ -136,11 +135,11 @@ func finish_attack():
 		target.hurt(damage, self)
 		$AttackSound.play()
 
-func hurt(damage: int, fired_by=null):
+func hurt(_damage: int, fired_by=null):
 	if fired_by:
 		alert(fired_by)
 	health_bar.show()
-	health_manager.hurt(damage)
+	health_manager.hurt(_damage)
 
 func get_nearest_visible_enemy():
 	var bodies = enemy_detector.get_overlapping_bodies()
